@@ -8,6 +8,7 @@ resource "aws_instance" "EC2Instance" {
   ami           = "ami-08982f1c5bf93d976"
   instance_type = "t3.micro"
   vpc_security_group_ids = [aws_security_group.SG-CLI.id]
+  iam_instance_profile = "AcessoEC2SSM"
 
   tags = {
     Name = "EC2CLI"

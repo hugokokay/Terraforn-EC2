@@ -1,7 +1,7 @@
 resource "aws_instance" "EC2Instance" {
   ami           = "ami-08982f1c5bf93d976"
   instance_type = "t3.micro"
-  pc_security_group_ids=[aws_security_group.SG-CLI.id]
+  vpc_security_group_ids = [aws_security_group.SG-CLI.id]
 
   tags = {
     Name = "EC2CLI"
@@ -25,7 +25,7 @@ resource "aws_security_group" "SG-CLI" {
 
 resource "aws_vpc_security_group_ingress_rule" "alow-SSh-CLI" {
   security_group_id = aws_security_group.SG-CLI.id
-  cidr_ipv4         = 179.54.217.183/32
+  cidr_ipv4         = "179.54.217.183/32"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
@@ -33,7 +33,7 @@ resource "aws_vpc_security_group_ingress_rule" "alow-SSh-CLI" {
 
 resource "aws_vpc_security_group_ingress_rule" "alow-http-CLI" {
   security_group_id = aws_security_group.SG-CLI.id
-  cidr_ipv4         = "0.0.0.0.0/0"
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 80
   ip_protocol       = "tcp"
   to_port           = 80
@@ -41,7 +41,7 @@ resource "aws_vpc_security_group_ingress_rule" "alow-http-CLI" {
 
 resource "aws_vpc_security_group_ingress_rule" "alow-https-CLI" {
   security_group_id = aws_security_group.SG-CLI.id
-  cidr_ipv4         = "0.0.0.0.0/0"
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 443
   ip_protocol       = "tcp"
   to_port           = 443

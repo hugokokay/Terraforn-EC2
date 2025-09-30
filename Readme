@@ -1,0 +1,26 @@
+# Terraform EC2 Instance Provisioning
+
+Este repositório contém um exemplo de configuração Terraform para provisionar uma instância EC2 na AWS, incluindo a criação de um Security Group com regras de acesso específicas.
+
+## Recursos Criados
+
+- **aws_instance "EC2Instance"**: Cria uma instância EC2 do tipo `t3.micro` usando a AMI `ami-08982f1c5bf93d976`, associada ao Security Group e ao perfil IAM `AcessoEC2SSM`.
+- **aws_security_group "SG-CLI"**: Cria um Security Group chamado `SG-EC2-CLI` na VPC `vpc-003e23d66dea1e353`.
+- **Regras de Ingress**:
+  - SSH (porta 22) liberado apenas para o IP `179.54.217.183/32`
+  - HTTP (porta 80) liberado para todos (`0.0.0.0/0`)
+  - HTTPS (porta 443) liberado para todos (`0.0.0.0/0`)
+- **Regra de Egress**:
+  - Libera todo o tráfego de saída (`0.0.0.0/0`)
+
+## Pré-requisitos
+
+- Conta AWS com credenciais configuradas.
+- [Terraform](https://www.terraform.io/downloads.html) instalado.
+
+## Como usar
+
+1. Clone este repositório:
+   ```sh
+   git clone https://github.com/seu-usuario/seu-repo.git
+   cd seu-repo
